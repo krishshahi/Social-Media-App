@@ -26,4 +26,7 @@ export default makeStyles((theme) => ({
     googleButton: {
         marginBottom: theme.spacing(2),
     },
+    '& .css-1fu7jd5-MuiButtonBase-root-MuiButton-root': {
+        margin: theme.spacing(1),
+    }
 }));

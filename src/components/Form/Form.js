@@ -20,8 +20,8 @@ const Form = (currentId, setCurrentId) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (currentId) {
-            dispatch(updatePost(currentId, postData));
+        if (currentId.currentId) {
+            dispatch(updatePost(currentId.currentId, postData));
         } else {
             dispatch(createPost(postData));
 
@@ -32,6 +32,7 @@ const Form = (currentId, setCurrentId) => {
 
     const clear = () => {
         setCurrentId(0);
+        setPostData({ creator: '', title: '', message: '', tags: '', selectedFile: '' });
 
     }
     return (

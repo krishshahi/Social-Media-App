@@ -7,10 +7,12 @@ import moment from 'moment';
 import useStyles from './styles';
 const Post = ({ post, setCurrentId }) => {
     const classes = useStyles();
+    console.log(post, "abcdefg")
 
     return (
         <Card className={classes.card}>
             <CardMedia className={classes.media} image={post.selectedFile} title={post.title} />
+
             <div className={classes.overlay}>
                 <Typography variant="h6">{post.creator}</Typography>
                 <Typography variant="body2">{moment(post.createdAt).fromNow()}</Typography>
@@ -25,6 +27,7 @@ const Post = ({ post, setCurrentId }) => {
             <div className={classes.details}>
                 <Typography variant="body2" color="textSecondary">{post.tags.map((tag) => `#${tag} `)}</Typography>
             </div>
+            <Typography className={classes.title} gutterBottom variant="h5" component="h2">{post.title}</Typography>
             <CardContent>
                 <Typography className={classes.title} variant="h5" color="gutterBottom">{post.message}</Typography>
             </CardContent>
