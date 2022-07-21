@@ -1,3 +1,5 @@
+// import {FETCH_ALL, CREATE, UPDATE, DELETE, LIKE} from '../'
+
 export default (posts = [], action) => {
     switch (action.type) {
         case 'UPDATE':

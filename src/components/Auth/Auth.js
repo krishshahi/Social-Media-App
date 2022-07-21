@@ -1,18 +1,29 @@
 import React, { useState } from 'react';
 import { Avatar, Button, Paper, Grid, Typography, Container } from '@mui/material';
 import { GoogleLogin } from 'react-google-login';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { LockOutlined } from "@material-ui/icons";
 import useStyles from './styles';
 import Input from './Input';
 import Icon from './icon';
+
+
+const initialStat = { firstName: '', lastName: '', email: '', password: '', confirmPassword: '' };
+
+
 const Auth = () => {
     // const state = null;
     const classes = useStyles();
     const [showPassword, setShowPassword] = useState(false);
     const [isSignup, setIsSignup] = useState(false);
+    const [formData, stFormData] = useState(initialStat);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleShowPassword = () => setShowPassword((prevShowPassword) => !prevShowPassword);
     const handleSubmit = () => {
+        console.log(formData);
 
     };
     const handleChange = () => {
@@ -27,10 +38,22 @@ const Auth = () => {
 
     const googleSuccess = async (res) => {
         console.log(res);
+        const result = res?.profileObj;
+        const token = res?.tokenId;
+
+        try {
+            dispatch({ type: 'AUTH', data: { result, token } });
+
+            navigate.pushState('/');
+        } catch (error) {
+            console.log(error);
+
+        }
 
     };
 
-    const googleFailure = () => {
+    const googleFailure = (error) => {
+        console.log(error);
         console.log('Google Sign In was unsuccessful. Try Again Later');
     }
 
